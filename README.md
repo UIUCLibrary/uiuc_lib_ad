@@ -1,15 +1,13 @@
 # UiucLibAd
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/uiuc_lib_ad`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This is a gem designed to make common Active Directory calls in Library software easy to call.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'uiuc_lib_ad'
+gem 'uiuc_lib_ad', 'https://github.com/UIUCLibrary/uiuc_lib_ad.git'
 ```
 
 And then execute:
