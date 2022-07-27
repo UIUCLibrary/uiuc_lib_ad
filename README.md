@@ -22,14 +22,25 @@ For now, this gem requires two environmental variables to be set...
     * UIUCLIBAD_USER - the dn of the service account connecting to AD 
     * UIUCLIBAD_PASSWORD - the password for the service account connecting to AD
 
+You'll also want to ...
+`cp config/config.yml.skel config/config.yml`
+
+As of right now, there's no need to tweak the skeleton, it's basically defaulting to uofi domain and has the highest level "base" as a config option.
+
 ## Usage
 
+```
 require 'uiuc_lib_ad'
 
 user = UiucLibAd::Entity.new( entity_cn: "jtgorman" )
 
-user.is_member_of(group_cn: "Library IT - IMS Faculty and Staff)
+if user.is_member_of(group_cn: "Library IT - IMS Faculty and Staff)
+  # do one thing for auth user
+else
+  #do other thing
+end
 
+```
 If an entity or a is_member_of is passed a cn or dn that doesn't exist, an exception will be thrown.
 
 
