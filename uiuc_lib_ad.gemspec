@@ -9,12 +9,12 @@ Gem::Specification.new do |spec|
   spec.email = ["ims@library.illinois.edu"]
 
   spec.summary = "This gem simplifies common ad.uillinois.edu Active Directory queries"
-#  spec.description = "TODO: Write a longer description or delete this line."
+  #  spec.description = "TODO: Write a longer description or delete this line."
   spec.homepage = "https://github.com/UIUCLibrary/uiuc_lib_ad"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 2.6.0"
 
-#  spec.metadata["allowed_push_host"] = "TODO: Set to your gem server 'https://example.com'"
+  #  spec.metadata["allowed_push_host"] = "TODO: Set to your gem server 'https://example.com'"
 
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = "https://github.com/UIUCLibrary/uiuc_lib_ad.git"

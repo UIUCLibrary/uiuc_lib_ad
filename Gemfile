@@ -13,6 +13,6 @@ gem "standard", "~> 1.3"
 
 gem "net-ldap"
 
-group :development do 
-  gem 'pry'
+group :development do
+  gem "pry"
 end
