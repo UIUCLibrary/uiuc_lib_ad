@@ -9,7 +9,13 @@ class UiucLibAdTest < Test::Unit::TestCase
     end
   end
 
-  test "something useful" do
-    assert_equal("expected", "actual")
-  end
+# TODO: Look into mocking 
+# following seems promising...
+# https://spin.atomicobject.com/2010/12/16/system-test-active-directory-authentication-in-ruby/
+
+
+#test "" do
+#
+#    assert_equal("expected", "actual")
+#  end
 end
