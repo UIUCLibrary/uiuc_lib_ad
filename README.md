@@ -7,7 +7,7 @@ This is a gem designed to make common Active Directory calls in Library software
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'uiuc_lib_ad', 'https://github.com/UIUCLibrary/uiuc_lib_ad.git'
+gem 'uiuc_lib_ad', git: 'https://github.com/UIUCLibrary/uiuc_lib_ad.git'
 ```
 
 And then execute:
