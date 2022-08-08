@@ -36,4 +36,16 @@ Gem::Specification.new do |spec|
 
   # For more information and examples about making a new gem, check out our
   # guide at: https://bundler.io/guides/creating_gem.html
+
+
+
+  spec.add_dependency "rake", "~> 13.0"
+  spec.add_dependency "test-unit", "~> 3.0"
+  spec.add_dependency "standard", "~> 1.3"
+  spec.add_dependency "net-ldap"
+  
+  #TODO: figure out better way to have this only required for testing..for this module
+  
+spec
+
 end

@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require_relative "uiuc_lib_ad/version"
-require "pry"
 
 module UiucLibAd
   class Error < StandardError; end
