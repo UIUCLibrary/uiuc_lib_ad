@@ -37,7 +37,7 @@ require 'uiuc_lib_ad'
 
 user = UiucLibAd::Entity.new( entity_cn: "jtgorman" )
 
-if user.is_member_of(group_cn: "Library IT - IMS Faculty and Staff)
+if user.is_member_of?(group_cn: "Library IT - IMS Faculty and Staff)
   # do one thing for auth user
 else
   #do other thing
