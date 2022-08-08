@@ -32,9 +32,8 @@ module UiucLibAd
     attr_reader :dn, :ldap
 
     def self.default_ldap
-      config = YAML.load_file(__dir__ + "/../config/config.yml")
-
-      ldap = Net::LDAP.new host: config["adserver"],
+ 
+      ldap = Net::LDAP.new host: ENV["UIUCLIBAD_ADSERVER"],
         port: 389,
         auth: {
           method: :simple,
@@ -52,7 +51,6 @@ module UiucLibAd
     end
 
     def initialize(ldap: nil, entity_cn: nil, entity_dn: nil)
-      @config = YAML.load_file(__dir__ + "/../config/config.yml")
 
       @ldap = if ldap.nil?
         Entity.default_ldap
@@ -75,7 +73,7 @@ module UiucLibAd
       filter = Net::LDAP::Filter.eq("cn", cn)
       dns = []
 
-      @ldap.search(base: @config["treebase"],
+      @ldap.search(base: ENV['UIUCLIBAD_TREEBASE'],
         filter: filter,
         attributes: attrs) do |entry|
         dns << entry.dn

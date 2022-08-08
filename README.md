@@ -18,12 +18,15 @@ Or install it yourself as:
 
     $ gem install uiuc_lib_ad
 
-For now, this gem requires two environmental variables to be set...
+For now, this gem requires four environmental variables to be set...
     * UIUCLIBAD_USER - the dn of the service account connecting to AD 
     * UIUCLIBAD_PASSWORD - the password for the service account connecting to AD
+    * UIUCLIBAD_ADSERVER - the ad server. Usually ad.uillinois.edu
+    * UIUCLIBAD_TREEBASE - the default search base, you'll want to use DC=ad,DC=uillinois,DC=edu
 
-You'll also want to ...
-`cp config/config.yml.skel config/config.yml`
+
+At some point I'll look at best practices with configuration of Ruby gems to try to seeif there's a way to get more options.
+
 
 As of right now, there's no need to tweak the skeleton, it's basically defaulting to uofi domain and has the highest level "base" as a config option.
 
