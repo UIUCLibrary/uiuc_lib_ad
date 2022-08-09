@@ -14,9 +14,6 @@ And then execute:
 
     $ bundle install
 
-Or install it yourself as:
-
-    $ gem install uiuc_lib_ad
 
 For now, this gem requires four environmental variables to be set...
 
