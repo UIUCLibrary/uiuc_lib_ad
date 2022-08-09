@@ -19,7 +19,8 @@ Or install it yourself as:
     $ gem install uiuc_lib_ad
 
 For now, this gem requires four environmental variables to be set...
-    * UIUCLIBAD_USER - the dn of the service account connecting to AD 
+
+    * UIUCLIBAD_USER     - the dn of the service account connecting to AD 
     * UIUCLIBAD_PASSWORD - the password for the service account connecting to AD
     * UIUCLIBAD_ADSERVER - the ad server. Usually ad.uillinois.edu
     * UIUCLIBAD_TREEBASE - the default search base, you'll want to use DC=ad,DC=uillinois,DC=edu
