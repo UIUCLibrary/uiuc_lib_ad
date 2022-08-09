@@ -33,7 +33,7 @@ module UiucLibAd
 
     def self.default_ldap
  
-      ldap = Net::LDAP.new host: ENV["UIUCLIBAD_ADSERVER"],
+      ldap = Net::LDAP.new host: ENV["UIUCLIBAD_SERVER"],
         port: 389,
         auth: {
           method: :simple,
