@@ -1,5 +1,9 @@
 ## [Unreleased]
 
+## [0.2.1] - 2022-08-15 
+
+- Added Configuration object. Will default to accessing environmental variables if value was not set.
+
 ## [0.2.0] - 2022-08-09
 
 - Removed AD from ADSERVER

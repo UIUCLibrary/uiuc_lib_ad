@@ -1,15 +1,23 @@
 name: Ruby
 
 on:
-  push:
-    branches:
-      - main
-
-  pull_request:
+  workflow_dispatch:
+    
+#  push:
+#    branches:
+# disabling for now
+#      - main
+#
+#  pull_request:
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    env: 
+      UIUCLIBAD_USER: e
+      UIUCLIBAD_PASSWORD: e
+      UIUCLIBAD_SERVER: ad.uillinois.edu
+      UIUCLIBAD_TREEBASE: DC=ad,DC=uillinois,DC=edu 
     name: Ruby ${{ matrix.ruby }}
     strategy:
       matrix:
