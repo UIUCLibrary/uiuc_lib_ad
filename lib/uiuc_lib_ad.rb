@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require_relative "uiuc_lib_ad/configuration"
 require_relative "uiuc_lib_ad/version"
 
 module UiucLibAd
@@ -32,13 +33,13 @@ module UiucLibAd
     attr_reader :dn, :ldap
 
     def self.default_ldap
- 
-      ldap = Net::LDAP.new host: ENV["UIUCLIBAD_SERVER"],
+      config = UiucLibAd::Configuration.instance
+      ldap = Net::LDAP.new host: config.server,
         port: 389,
         auth: {
           method: :simple,
-          username: ENV["UIUCLIBAD_USER"],
-          password: ENV["UIUCLIBAD_PASSWORD"]
+          username: config.user,
+          password: config.password
         },
         encryption: {
           method: :start_tls,
@@ -73,7 +74,7 @@ module UiucLibAd
       filter = Net::LDAP::Filter.eq("cn", cn)
       dns = []
 
-      @ldap.search(base: ENV['UIUCLIBAD_TREEBASE'],
+      @ldap.search(base: UiucLibAd::Configuration.instance.treebase,
         filter: filter,
         attributes: attrs) do |entry|
         dns << entry.dn
