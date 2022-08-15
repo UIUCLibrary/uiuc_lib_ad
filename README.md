@@ -14,16 +14,23 @@ And then execute:
 
     $ bundle install
 
+Configuration can be done using either Ruby code or environment variables. In
+Rails, you would add a `config/initializers/uiuc_lib_ad.rb` file containing:
 
-For now, this gem requires four environmental variables to be set...
+    UiucLibAd::Configuration.instance = UiucLibAd::Configuration.new(
+        # see below for what these mean
+        user:     "user",
+        password: "password",
+        server:   "ad.uillinois.edu",
+        treebase: "DC=ad,DC=uillinois,DC=edu"
+    )
+
+You can also use environment variables:
 
     * UIUCLIBAD_USER     - the dn of the service account connecting to AD 
     * UIUCLIBAD_PASSWORD - the password for the service account connecting to AD
     * UIUCLIBAD_SERVER   - the ad server. Usually ad.uillinois.edu
     * UIUCLIBAD_TREEBASE - the default search base, you'll want to use DC=ad,DC=uillinois,DC=edu
-
-
-At some point I'll look at best practices with configuration of Ruby gems to try to see if there's a way to get more options.
 
 
 ## Usage
