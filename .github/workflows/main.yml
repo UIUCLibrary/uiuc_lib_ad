@@ -12,10 +12,10 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     env: 
-      UIUCLIBAD_USER: e
-      UIUCLIBAD_PASSWORD: e
+      UIUCLIBAD_USER: ${{ secrets.UIUCLIBAD_USER}}
+      UIUCLIBAD_PASSWORD: ${{ secrets.UIUCLIBAD_PASSWORD}}
       UIUCLIBAD_SERVER: ad.uillinois.edu
       UIUCLIBAD_TREEBASE: DC=ad,DC=uillinois,DC=edu 
     name: Ruby ${{ matrix.ruby }}
