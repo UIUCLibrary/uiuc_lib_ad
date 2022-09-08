@@ -18,6 +18,7 @@ jobs:
       UIUCLIBAD_PASSWORD: ${{ secrets.UIUCLIBAD_PASSWORD}}
       UIUCLIBAD_SERVER: ad.uillinois.edu
       UIUCLIBAD_TREEBASE: DC=ad,DC=uillinois,DC=edu 
+      RBENV_VERSION: 3.1.2
     name: Ruby ${{ matrix.ruby }}
     strategy:
       matrix:
@@ -26,10 +27,14 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: ${{ matrix.ruby }}
-        bundler-cache: true
+#  This seems to expect some stuff set up in
+#  a typical github image, need to see
+#  if maybe there's some way to set up
+#    - name: Set up Ruby
+#      uses: ruby/setup-ruby@v1
+#      with:
+#        ruby-version: ${{ matrix.ruby }}
+#        bundler-cache: true
+#
     - name: Run the default task
       run: bundle exec rake
