@@ -1,5 +1,4 @@
 module UiucLibAd
-
   class Configuration
     @@instance = Configuration.new
 
@@ -18,6 +17,9 @@ module UiucLibAd
     def method_missing(symbol, *args)
       instance_variable_get("@#{symbol}") || ENV["UIUCLIBAD_#{symbol.to_s.upcase}"]
     end
-  end
 
+    def respond_to_missing? *args
+      true
+    end
+  end
 end

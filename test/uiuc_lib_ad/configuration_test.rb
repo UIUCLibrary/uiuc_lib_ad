@@ -3,7 +3,6 @@
 require "test_helper"
 
 class ConfigurationTest < Test::Unit::TestCase
-
   setup do
     @config = ::UiucLibAd::Configuration.new(key1: "value1", key2: "value2")
   end
@@ -29,12 +28,11 @@ class ConfigurationTest < Test::Unit::TestCase
   end
 
   test "method_missing() falls back to the environment for a missing ivar" do
-    ENV['UIUCLIBAD_TEST'] = "test_value"
+    ENV["UIUCLIBAD_TEST"] = "test_value"
     assert_equal "test_value", @config.test
   end
 
   test "method_missing() returns nil for a value not present as either an ivar or in the environment" do
     assert_nil @config.bogus_key
   end
-
 end

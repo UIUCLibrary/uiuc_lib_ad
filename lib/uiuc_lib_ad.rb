@@ -52,7 +52,6 @@ module UiucLibAd
     end
 
     def initialize(ldap: nil, entity_cn: nil, entity_dn: nil)
-
       @ldap = if ldap.nil?
         Entity.default_ldap
       else
