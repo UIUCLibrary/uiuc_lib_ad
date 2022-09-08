@@ -14,12 +14,12 @@ jobs:
   build:
     runs-on: self-hosted
     environment: test
-#    env: 
-#      UIUCLIBAD_USER: ${{ secrets.UIUCLIBAD_USER}}
-#      UIUCLIBAD_PASSWORD: ${{ secrets.UIUCLIBAD_PASSWORD}}
-#      UIUCLIBAD_SERVER: ad.uillinois.edu
-#      UIUCLIBAD_TREEBASE: DC=ad,DC=uillinois,DC=edu 
-#      RBENV_VERSION: 3.1.2
+    env: 
+      UIUCLIBAD_USER: ${{ secrets.UIUCLIBAD_USER}}
+      UIUCLIBAD_PASSWORD: ${{ secrets.UIUCLIBAD_PASSWORD}}
+      UIUCLIBAD_SERVER: ad.uillinois.edu
+      UIUCLIBAD_TREEBASE: DC=ad,DC=uillinois,DC=edu 
+      RBENV_VERSION: 3.1.2
 #    name: Ruby ${{ matrix.ruby }}
 #    strategy:
 #      matrix:
