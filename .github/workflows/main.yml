@@ -19,11 +19,11 @@ jobs:
       UIUCLIBAD_SERVER: ad.uillinois.edu
       UIUCLIBAD_TREEBASE: DC=ad,DC=uillinois,DC=edu 
       RBENV_VERSION: 3.1.2
-    name: Ruby ${{ matrix.ruby }}
-    strategy:
-      matrix:
-        ruby:
-          - '3.1.2'
+#    name: Ruby ${{ matrix.ruby }}
+#    strategy:
+#      matrix:
+#        ruby:
+#          - '3.1.2'
 
     steps:
     - uses: actions/checkout@v2
@@ -35,6 +35,10 @@ jobs:
 #      with:
 #        ruby-version: ${{ matrix.ruby }}
 #        bundler-cache: true
-#
+#   
+    - name: check treeebase set
+      run: echo $UIUCLIBAD_TREEBASE
+    - name: check treeebase set
+      run: echo $UIUCLIBAD_USER
     - name: Run the default task
       run: bundle exec rake
