@@ -16,17 +16,6 @@ module UiucLibAd
     end
   end
 
-  class MultiplePossibleDNs < StandardError
-    def initialize(returned_dns)
-      @returned_dns = returned_dns
-      super(message)
-    end
-
-    def message
-      "Multiple DNS found: " + @returned_dns.join("\n")
-    end
-  end
-
   class NoDNFound < StandardError; end
 
   class Entity
@@ -59,10 +48,10 @@ module UiucLibAd
         ldap_conn
       end
 
-      @dn = get_dn(cn: entity_cn, dn: entity_dn)
+      @dns = get_dns(cn: entity_cn, dn: entity_dn)
     end
 
-    def get_dn(cn: nil, dn: nil)
+    def get_dns(cn: nil, dn: nil)
       if dn.nil? && cn.nil?
         fail NoCNorDNException.new
       elsif !dn.nil?
@@ -80,14 +69,12 @@ module UiucLibAd
         dns << entry.dn
       end
 
-      if dns.length > 1
-        fail MultiplePossibleDNs.new(dns)
-      elsif dns.length < 1
+      if dns.empty?
         fail NoDNFound.new
       end
 
-      # return the dn
-      dns[0]
+      # return the dns
+      dns
     end
 
     def is_member_of?(group_cn: nil, group_dn: nil)
@@ -96,25 +83,25 @@ module UiucLibAd
       # probably could refactor witht he initializer logic, or move some of that into the
       # get dn call
 
-      target_dn = get_dn(cn: group_cn, dn: group_dn)
+      target_dns = get_dns(cn: group_cn, dn: group_dn)
+      target_dns.each do |target_dn|
+        filter = "(memberOf:1.2.840.113556.1.4.1941:=#{target_dn})"
+        dns = []
+        @dns.each do |dn|
+          # So, we want to base of the search to actually be the
+          # dn of this entity a nd see if there's any chain "ismemberof"
+          # witht he targt_dn
+          @ldap.search(base: dn,
+            filter: filter,
+            attributes: attrs) do |entry|
+            dns << entry.dn
+          end
 
-      filter = "(memberOf:1.2.840.113556.1.4.1941:=#{target_dn})"
-      dns = []
-
-      # So, we want to base of the search to actually be the
-      # dn of this entity a nd see if there's any chain "ismemberof"
-      # witht he targt_dn
-      @ldap.search(base: @dn,
-        filter: filter,
-        attributes: attrs) do |entry|
-        dns << entry.dn
+          if dns.any?
+            return true
+          end
+        end
       end
-
-      if dns.length >= 1
-        return true
-      end
-
-      # return the dn
       false
     end
   end
