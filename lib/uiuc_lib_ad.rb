@@ -54,7 +54,7 @@ module UiucLibAd
       if dn.nil? && cn.nil?
         fail NoCNorDNException.new
       elsif !dn.nil?
-        return dn
+        return [dn]
       end
 
       attrs = ["dn"]
