@@ -4,9 +4,6 @@ require_relative "uiuc_lib_ad/configuration"
 require_relative "uiuc_lib_ad/version"
 
 module UiucLibAd
-  class Error < StandardError; end
-  # Your code goes here...
-
   require "net-ldap"
   require "yaml"
 
