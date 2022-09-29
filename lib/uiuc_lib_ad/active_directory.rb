@@ -1,9 +1,11 @@
 module UiucLibAd
+  
+  class MultipleDNsFound < StandardError; end
+  
   class ActiveDirectory 
     
     require "net-ldap"
 
-    class MultipleDNsFound < StandardError; end
     
     def initialize
       config = UiucLibAd::Configuration.instance
@@ -52,5 +54,18 @@ module UiucLibAd
       # return the dns
       dns[0]
     end
+
+
+  # This searches for a full distingusish name from a cn (netid or group name)
+  def dn_exists?(dn: nil, filter: nil)
+    @connection.search(base: dn,
+                       filter: filter) do |entry|
+
+       return true
+    end
+    return false 
   end
 end
+end
+
+
