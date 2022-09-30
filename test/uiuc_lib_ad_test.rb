@@ -52,10 +52,17 @@ class UiucLibAdTest < Test::Unit::TestCase
   end
 
 
-  test "is_member_of? with non-existent group dn should be false" do
-    user = UiucLibAd::User.new( cn: "jtgorman")
-    assert(!user.is_member_of?(group_dn: "CN=jabberwalky,OU+Library,DC=ad,DC=uillinois,DC=edu"))
+  test "is_member_of? with non-existent user  dn should be false" do
+    user = UiucLibAd::User.new( cn: "netidthatisnot")
+    assert(!user.is_member_of?(group_cn: "Library - all users"))
   end
+
+  test "is_member_of? with non-existent user dn should be false" do
+    user = UiucLibAd::User.new( dn: "CN=netidthatisnot,OU=Person,DC=ad,DC=uillinois,DC=edu")
+    assert(!user.is_member_of?(group_cn: "Library - all users"))
+  end
+
+
 
 
 end
