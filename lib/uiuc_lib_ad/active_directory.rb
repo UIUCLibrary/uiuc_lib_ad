@@ -1,10 +1,9 @@
 module UiucLibAd
   
-  class MultipleDNsFound < StandardError; end
-  
   class ActiveDirectory 
     
     require "net-ldap"
+    require "pry"
 
     
     def initialize
@@ -36,6 +35,8 @@ module UiucLibAd
       end
   
       dns = []
+
+     # binding.pry
         
   
   
@@ -65,6 +66,8 @@ module UiucLibAd
     end
     return false 
   end
+
+
 end
 end
 
