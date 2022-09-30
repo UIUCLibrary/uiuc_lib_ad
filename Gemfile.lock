@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    uiuc_lib_ad (0.2.4)
+    uiuc_lib_ad (0.3.2)
       net-ldap
       rake (~> 13.0)
       standard (~> 1.3)
