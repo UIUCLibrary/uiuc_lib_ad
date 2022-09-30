@@ -22,7 +22,6 @@ Rails, you would add a `config/initializers/uiuc_lib_ad.rb` file containing:
         user:     "user",
         password: "password",
         server:   "ad.uillinois.edu",
-        treebase: "DC=ad,DC=uillinois,DC=edu"
     )
 
 You can also use environment variables:
@@ -30,15 +29,17 @@ You can also use environment variables:
     * UIUCLIBAD_USER     - the dn of the service account connecting to AD 
     * UIUCLIBAD_PASSWORD - the password for the service account connecting to AD
     * UIUCLIBAD_SERVER   - the ad server. Usually ad.uillinois.edu
-    * UIUCLIBAD_TREEBASE - the default search base, you'll want to use DC=ad,DC=uillinois,DC=edu
 
+There are two optional settings:
+    * UIUCLIB_USER_TREEBASE - defaults to "OU=People,DC=ad,DC=uillinois,DC=edu"
+    * UIUDLIB_GROUP_TREEBASE - defaults to "OU=Library,OU=Urbana,DC=ad,DC=uillinois,DC=edu"
 
 ## Usage
 
 ```
 require 'uiuc_lib_ad'
 
-user = UiucLibAd::Entity.new( entity_cn: "jtgorman" )
+user = UiucLibAd::User.new( cn: "jtgorman" )
 
 if user.is_member_of?(group_cn: "Library IT - IMS Faculty and Staff)
   # do one thing for auth user
@@ -47,7 +48,7 @@ else
 end
 
 ```
-If an entity or a is_member_of is passed a cn or dn that doesn't exist, an exception will be thrown.
+A cn or dn being used that doesn't exist will throw an exception.
 
 
 
