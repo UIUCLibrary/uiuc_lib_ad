@@ -6,9 +6,7 @@ module UiucLibAd
     def initialize
       config = UiucLibAd::Configuration.instance
 
-      server = config.server.nil? ? "ad.uillinois.edu" : config.server 
-
-
+      server = config.server.nil? ? "ad.uillinois.edu" : config.server
 
       @connection = Net::LDAP.new host: server,
         port: 389,

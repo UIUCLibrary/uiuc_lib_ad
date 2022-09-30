@@ -19,7 +19,7 @@ module UiucLibAd
       elsif !dn.nil?
         @dn = dn
       else
-        begin 
+        begin
           @dn = @ldap.get_dn(cn: cn,
             treebase: @user_treebase,
             additional_filters: [Net::LDAP::Filter.eq("ObjectClass", "user")])
@@ -36,7 +36,6 @@ module UiucLibAd
         return false
       end
 
-
       if group_dn.nil? && group_cn.nil?
         fail NoCNorDNException.new
 
@@ -47,12 +46,12 @@ module UiucLibAd
         target_dn = group_dn
 
       else
-        begin 
+        begin
           target_dn = @ldap.get_dn(cn: group_cn,
             treebase: @group_treebase,
             additional_filters: [Net::LDAP::Filter.eq("ObjectClass", "group")])
         rescue UiucLibAd::NoDNFound
-          return false 
+          return false
         end
       end
 
