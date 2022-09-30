@@ -28,11 +28,11 @@ You can also use environment variables:
 
     * UIUCLIBAD_USER     - the dn of the service account connecting to AD 
     * UIUCLIBAD_PASSWORD - the password for the service account connecting to AD
-    * UIUCLIBAD_SERVER   - the ad server. Usually ad.uillinois.edu
-
-There are two optional settings:
-    * UIUCLIB_USER_TREEBASE - defaults to "OU=People,DC=ad,DC=uillinois,DC=edu"
-    * UIUDLIB_GROUP_TREEBASE - defaults to "OU=Library,OU=Urbana,DC=ad,DC=uillinois,DC=edu"
+ 
+There are three optional settings:
+    * UIUCLIB_USER_TREEBASE - where to start looking for groups in the AD tree, defaults to "OU=People,DC=ad,DC=uillinois,DC=edu"
+    * UIUDLIB_GROUP_TREEBASE - where to start looking for groups in the AD tree, defaults to "OU=Library,OU=Urbana,DC=ad,DC=uillinois,DC=edu"
+    * UIUCLIBAD_SERVER   - the ad server, defaults to ad.uillinois.edu
 
 ## Usage
 

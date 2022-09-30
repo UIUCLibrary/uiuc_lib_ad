@@ -1,3 +1,7 @@
+## [0.3.1] - 2022-09-30
+
+- Changed so AD_SERVER is also a default that doesn't need to be set in configuration (either by env or config file). Defaults to ad.uillinois.edu
+
 ## [0.3.0] - 2022-09-30
 
 - Replace entity class with separate active directory and user class. UiucLibAd::User.new(cn: netid) will look
