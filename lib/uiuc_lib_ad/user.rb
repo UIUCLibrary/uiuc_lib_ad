@@ -1,12 +1,9 @@
 module UiucLibAd
-
   class User
     attr_reader :dn, :ldap
 
     def initialize(ldap: nil, cn: nil, dn: nil)
-
       @config = UiucLibAd::Configuration.instance
-
 
       @ldap = ldap.nil? ? UiucLibAd::ActiveDirectory.new : ldap_conn
 
@@ -16,20 +13,19 @@ module UiucLibAd
 
       if dn.nil? && cn.nil?
         fail NoCNorDNException.new
-      #probably shoudl warn here if given boht
+      # probably shoudl warn here if given boht
       elsif !dn.nil? && !@ldap.dn_exists?(dn: dn)
         fail NoDNFound.new
       elsif !dn.nil?
         @dn = dn
       else
-        @dn = @ldap.get_dn(cn: cn, 
-                           treebase: @user_treebase, 
-                           additional_filters: [Net::LDAP::Filter.eq("ObjectClass", "user") ] )
+        @dn = @ldap.get_dn(cn: cn,
+          treebase: @user_treebase,
+          additional_filters: [Net::LDAP::Filter.eq("ObjectClass", "user")])
       end
     end
-    
-    def is_member_of?(group_cn: nil, group_dn: nil)
 
+    def is_member_of?(group_cn: nil, group_dn: nil)
       if group_dn.nil? && group_cn.nil?
         fail NoCNorDNException.new
 
@@ -41,17 +37,16 @@ module UiucLibAd
 
       else
         target_dn = @ldap.get_dn(cn: group_cn,
-                                 treebase: @group_treebase, 
-                                 additional_filters: [Net::LDAP::Filter.eq("ObjectClass", "group")])
+          treebase: @group_treebase,
+          additional_filters: [Net::LDAP::Filter.eq("ObjectClass", "group")])
       end
 
-      #filter = Net::LDAP::Filter.parse_ldap_filter("(memberOf:1.2.840.113556.1.4.1941:=#{target_dn})")
+      # filter = Net::LDAP::Filter.parse_ldap_filter("(memberOf:1.2.840.113556.1.4.1941:=#{target_dn})")
 
       # So, we want to base of the search to actually be the
       # dn of this entity a nd see if there's any chain "ismemberof"
       # with the targt_dn
-      return @ldap.dn_exists?(dn: @dn, filter: "(memberOf:1.2.840.113556.1.4.1941:=#{target_dn})")
-     
-    end 
+      @ldap.dn_exists?(dn: @dn, filter: "(memberOf:1.2.840.113556.1.4.1941:=#{target_dn})")
+    end
   end
 end

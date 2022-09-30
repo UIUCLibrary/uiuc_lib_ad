@@ -33,7 +33,6 @@ class UiucLibAdTest < Test::Unit::TestCase
     assert(user.is_member_of?(group_cn: "Library IT - IMS Faculty and Staff"))
   end
 
-
   test "using dn when checking group" do
     user = UiucLibAd::User.new(dn: "CN=jtgorman,OU=People,DC=ad,DC=uillinois,DC=edu")
 
@@ -45,7 +44,4 @@ class UiucLibAdTest < Test::Unit::TestCase
 
     assert(user.is_member_of?(group_cn: "Library - all users"))
   end
-
-
-
 end
