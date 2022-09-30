@@ -1,3 +1,13 @@
+## [0.3.0] - 2022-09-30
+
+- Replace entity class with separate active directory and user class. UiucLibAd::User.new(cn: netid) will look
+  for an active directory object of class "user" that's in OU=People,DC=ad,DC=uillinois,dC=edu. If given a group
+  cn to search, it'll look for the dn of an active directory object of class "group" in OU=Library,OU=Urbana,DC=ad,DC=uillinois,DC=edu
+
+  There's now UIUCLIBAD_USER_TREEBASE and UIUCLIBAD_GROUP_TREEBASE to override those settings.
+
+  Multiple dns being returned will again throw an error, as that shouldn't happen and could be an attempt at auth bypass.
+
 ## [0.2.4] - 2022-09-26
 
 - Fixed issue when using explicity DN where an array would not be correctly setup.
