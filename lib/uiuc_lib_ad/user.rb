@@ -15,17 +15,28 @@ module UiucLibAd
         fail NoCNorDNException.new
       # probably shoudl warn here if given boht
       elsif !dn.nil? && !@ldap.dn_exists?(dn: dn)
-        fail NoDNFound.new
+        @dn = nil
       elsif !dn.nil?
         @dn = dn
       else
-        @dn = @ldap.get_dn(cn: cn,
-          treebase: @user_treebase,
-          additional_filters: [Net::LDAP::Filter.eq("ObjectClass", "user")])
+        begin 
+          @dn = @ldap.get_dn(cn: cn,
+            treebase: @user_treebase,
+            additional_filters: [Net::LDAP::Filter.eq("ObjectClass", "user")])
+        rescue UiucLibAd::NoDNFound
+          @dn = nil
+        end
       end
     end
 
     def is_member_of?(group_cn: nil, group_dn: nil)
+      # if user has no distinguish naem, they cannot
+      # be part of a group
+      if @dn.nil?
+        return false
+      end
+
+
       if group_dn.nil? && group_cn.nil?
         fail NoCNorDNException.new
 

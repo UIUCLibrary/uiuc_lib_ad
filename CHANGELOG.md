@@ -1,3 +1,7 @@
+## [0.3.3] - 2022-09-30
+
+- Changed so creating a user with  a dn or cn that doesn't exist works, but all calls to is_member_of? will return false
+
 ## [0.3.2] - 2022-09-30
 
 - Changed so passing in a dn or cn that doesn't exist will just return false, not throw an error
