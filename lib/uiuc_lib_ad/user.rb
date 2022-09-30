@@ -17,7 +17,7 @@ module UiucLibAd
       if dn.nil? && cn.nil?
         fail NoCNorDNException.new
       #probably shoudl warn here if given boht
-      elsif !dn.nil? && !@ldap.dn_exists?(cn: dn)
+      elsif !dn.nil? && !@ldap.dn_exists?(dn: dn)
         fail NoDNFound.new
       elsif !dn.nil?
         @dn = dn
