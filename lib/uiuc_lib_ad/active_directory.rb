@@ -1,7 +1,6 @@
 module UiucLibAd
   class ActiveDirectory
     require "net-ldap"
-    require "pry"
 
     def initialize
       config = UiucLibAd::Configuration.instance
