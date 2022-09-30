@@ -1,3 +1,7 @@
+## [0.3.2] - 2022-09-30
+
+- Changed so passing in a dn or cn that doesn't exist will just return false, not throw an error
+
 ## [0.3.1] - 2022-09-30
 
 - Changed so AD_SERVER is also a default that doesn't need to be set in configuration (either by env or config file). Defaults to ad.uillinois.edu

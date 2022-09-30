@@ -30,15 +30,19 @@ module UiucLibAd
         fail NoCNorDNException.new
 
       elsif !group_dn.nil? && !@ldap.dn_exists?(dn: group_dn)
-        fail NoDNFound.new
+        return false
 
       elsif !group_dn.nil?
         target_dn = group_dn
 
       else
-        target_dn = @ldap.get_dn(cn: group_cn,
-          treebase: @group_treebase,
-          additional_filters: [Net::LDAP::Filter.eq("ObjectClass", "group")])
+        begin 
+          target_dn = @ldap.get_dn(cn: group_cn,
+            treebase: @group_treebase,
+            additional_filters: [Net::LDAP::Filter.eq("ObjectClass", "group")])
+        rescue UiucLibAd::NoDNFound
+          return false 
+        end
       end
 
       # filter = Net::LDAP::Filter.parse_ldap_filter("(memberOf:1.2.840.113556.1.4.1941:=#{target_dn})")
